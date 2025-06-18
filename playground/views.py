@@ -1,10 +1,8 @@
 from django.shortcuts import render
-from store.models import Product
-from tags.models import TaggedItem
+from .tasks import notify_customers
 
 def say_hello(request):
-    queryset = TaggedItem.objects.get_tags_for(Product, 1)
-    
+    notify_customers.delay('Hello')
     return render(request, 'hello.html', {
-        'name': 'Amanuel', 'tags':list(queryset)
+        'name': 'Amanuel'
     })
