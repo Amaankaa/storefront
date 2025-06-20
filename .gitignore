@@ -1,1 +1,4 @@
 .txt
+tips.py
+__pycache__/
+*.py[cod]
