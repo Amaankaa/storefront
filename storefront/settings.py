@@ -65,8 +65,8 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware'
 ]
 
-if DEBUG:
-    MIDDLEWARE += ['silk.middleware.SilkyMiddleware']
+# if DEBUG:
+#     MIDDLEWARE += ['silk.middleware.SilkyMiddleware']
 
 INTERNAL_IPS = [
     "127.0.0.1",
@@ -163,7 +163,8 @@ REST_FRAMEWORK = {
 
 SIMPLE_JWT = {
    'AUTH_HEADER_TYPES': ('JWT',),
-   'ACCESS_TOKEN_LIFETIME': timedelta(days=1)
+   'ACCESS_TOKEN_LIFETIME': timedelta(days=1),
+   'REFRESH_TOKEN_LIFETIME': timedelta(days=30)
 }
 
 AUTH_USER_MODEL = 'core.User'
@@ -192,5 +193,16 @@ CELERY_BEAT_SCHEDULE = {
         'task': 'playground.tasks.notify_customers',
         'schedule': 5,
         'args': ['Hello World']
+    }
+}
+
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://127.0.0.1:6379/2",
+        "TIMEOUT": 10*60,
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+        }
     }
 }
