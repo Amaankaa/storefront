@@ -18,6 +18,10 @@ redis = "*"
 celery = "*"
 flower = "*"
 django-redis = "*"
+whitenoise = "*"
+gunicorn = "*"
+django-debug-toolbar = "*"
+waitress = "*"
 
 [dev-packages]
 pytest = "*"

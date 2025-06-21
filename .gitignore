@@ -1,4 +1,6 @@
 .txt
 tips.py
-__pycache__/
-*.py[cod]
+*.pyc
+/media/
+/static/
+general.log
